@@ -48,7 +48,7 @@ module.exports = {
       body.indexOf(" ") == 0
     ) {
       var msg = {
-        body: "🖤🥀"𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯,
+        body: "🖤🥀"⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷,
         attachment: media,
       };
       api.sendMessage(msg, threadID, messageID);
