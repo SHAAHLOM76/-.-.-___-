@@ -26,7 +26,7 @@ const media = (
 
 	if (body.indexOf("call a aso")==0 || body.indexOf("😡")==0) {
 		var msg = {
-				body: "Md Fahim islam ",
+				body: "⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷",
 				attachment: media
 			}
 			api.sendMessage( msg, threadID, messageID);
