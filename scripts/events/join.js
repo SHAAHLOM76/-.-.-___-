@@ -56,7 +56,7 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
     fs.writeFileSync(gifPath, response.data);
   if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) {
     api.changeNickname(`[ ${global.config.PREFIX} ] • ➠${(!global.config.BOTNAME) ? "bot" : global.config.BOTNAME}`, threadID, api.getCurrentUserID());
-    return api.sendMessage("চলে এসেছি আমি পিচ্চি সৌরভ তোমাদের মাঝে🤭!", event.threadID, () => api.sendMessage({ body: `${global.config.BOTNAME} CONNECTED«\n\nAssalamualaykum☘️
+    return api.sendMessage("চলে এসেছি আমি ⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷 তোমাদের  মাঝে🤭!", event.threadID, () => api.sendMessage({ body: `${global.config.BOTNAME} CONNECTED«\n\nAssalamualaykum☘️
 <------------------------------>  
 BOT CONNECTED SUCCESFUL !!! 
 
@@ -66,15 +66,15 @@ APPROVAL ALLOW IN THIS GROUP!!!
 <------------------------------>
 AND FOR ANY COMPLAINTS OR CONTACT BOT OPERATOR 
 
-DEVELOPER :𝐊𝐈𝐍𝐆 𝐒𝐇𝐎𝐔𝐑𝐎𝐕 
+DEVELOPER :⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷
 
 🟣Facebook Account Link: 
 
-https://www.facebook.com/www.xsxx.com365
+https://www.facebook.com/share/1BTsR4dDyo/
 
-🔵WHATSAPP NUMBER: wa.me/+8801709281334
+🔵WHATSAPP NUMBER: wa.me/+8801328091668
 
-🟢SUPPORT EMAIL: www.shourovislam5430@gmail.com`, attachment: fs.createReadStream(gifPath)}, threadID));
+🟢SUPPORT EMAIL: www.shaahlomislam@gmail.com`, attachment: fs.createReadStream(gifPath)}, threadID));
   }})
 .catch(error => {
     console.error(error);
@@ -106,11 +106,11 @@ https://www.facebook.com/www.xsxx.com365
         let avtAnime = (await axios.get(encodeURI(
           `https://graph.facebook.com/${event.logMessageData.addedParticipants[o].userFbId}/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`), { responseType: "arraybuffer" })).data;
         var ok = [
-          'https://imgur.com/a/07L7UdX',
-          'https://imgur.com/a/07L7UdX',
-          'https://imgur.com/a/07L7UdX',
-          'https://imgur.com/a/07L7UdX',
-          'https://imgur.com/a/07L7UdX'
+          'https://imgur.com/a/Jm2DmRS',
+          'https://imgur.com/a/Jm2DmRS',
+          'https://imgur.com/a/Jm2DmRS',
+          'https://imgur.com/a/Jm2DmRS',
+          'https://imgur.com/a/Jm2DmRS'
         ]
         let background = await new Promise((resolve, reject) => {
           request.get(
@@ -142,7 +142,7 @@ https://www.facebook.com/www.xsxx.com365
         ctx.fillStyle = "#FFF";
         ctx.textAlign = "center";
         ctx.font = `155px Semi`;
-        ctx.fillText(`${event.logMessageData.addedParticipants[o].fullName}`, canvas.width / 2 + 20, canvas.height / 2 + 100);
+        ctx.fillText(`${event.logMessageData.addedParticipants[o].fullName}`, canvas.https://imgur.com/a/Jm2DmRS / 2 + 100);
         ctx.save();
         ctx.font = `75px Semi`;
         ctx.fillText(`Welcome to ${threadName}`, canvas.width / 2 - 15, canvas.height / 2 + 235)
@@ -175,7 +175,7 @@ https://www.facebook.com/www.xsxx.com365
         abx.push(fs.createReadStream(__dirname + `/Nayan/join/${o}.png`))
       }
       memLength.sort((a, b) => a - b);
-      (typeof threadData.customJoin == "undefined") ? msg = "╭•┄┅═══❁🌺❁═══┅┄•╮\n   আসসালামু আলাইকুম-!!🖤\n╰•┄┅═══❁🌺❁═══┅┄•╯ \n\n    ✨🆆🅴🅻🅻 🅲🅾🅼🅴✨\n\n                ❥𝐍𝐄𝐖~\n\n        ~🇲‌🇪‌🇲‌🇧‌🇪‌🇷‌~\n\n        [   {name} ]\n\n༆-✿ আপনাকে আমাদের࿐\n\n{threadName}\n\n🌺✨!!—এর পক্ষ-থেকে-!!✨🌺\n\n❤️🫰_ভালোবাস_অভিরাম_🫰❤️\n\n༆-✿আপনি_এই_গ্রুপের {soThanhVien} নং মেম্বার࿐\n\n╭•┄┅═══❁🌺❁═══┅┄•╮\n  🌸   𝐊𝐈𝐍𝐆 𝐒𝐇𝐎𝐔𝐑𝐎𝐕-𝐁𝐎𝐓 ⚠️  \n╰•┄┅═══❁🌺❁═══┅┄•╯": msg = threadData.customJoin;
+      (typeof threadData.customJoin == "undefined") ? msg = "╭•┄┅═══❁🌺❁═══┅┄•╮\n   আসসালামু আলাইকুম-!!🖤\n╰•┄┅═══❁🌺❁═══┅┄•╯ \n\n    ✨🆆🅴🅻🅻 🅲🅾🅼🅴✨\n\n                ❥𝐍𝐄𝐖~\n\n        ~🇲‌🇪‌🇲‌🇧‌🇪‌🇷‌~\n\n        [   {name} ]\n\n༆-✿ আপনাকে আমাদের࿐\n\n{threadName}\n\n🌺✨!!—এর পক্ষ-থেকে-!!✨🌺\n\n❤️🫰_ভালোবাস_অভিরাম_🫰❤️\n\n༆-✿আপনি_এই_গ্রুপের {soThanhVien} নং মেম্বার࿐\n\n╭•┄┅═══❁🌺❁═══┅┄•╮\n  🌸   𝐊𝐈𝐍𝐆 𝐒𝐇𝐀𝐀𝐇𝐎𝐎𝐌-𝐁𝐎𝐓 ⚠️  \n╰•┄┅═══❁🌺❁═══┅┄•╯": msg = threadData.customJoin;
       var nameAuthor = await Users.getNameUser(event.author)
       msg = msg
         .replace(/\{iduser}/g, iduser.join(', '))
