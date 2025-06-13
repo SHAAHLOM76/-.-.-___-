@@ -1,130 +1,132 @@
-const axios = require("axios");
-const fs = require("fs");
-const path = require("path");
-const ytSearch = require("yt-search");
-const https = require("https");
+const fs = require('fs');
+const axios = require("axios")
+const { resolve } = require('path');
+async function downloadMusicFromYoutube(link, path) {
+  if (!link) return 'Link Not Found';
 
-function deleteAfterTimeout(filePath, timeout = 15000) {
-  setTimeout(() => {
-    if (fs.existsSync(filePath)) {
-      fs.unlink(filePath, (err) => {
-        if (!err) {
-          console.log(`✅ Deleted file: ${filePath}`);
-        } else {
-          console.error(`❌ Error deleting file: ${filePath}`);
-        }
-      });
-    }
-  }, timeout);
-}
+  const timestart = Date.now();
 
-async function getAPIUrl() {
   try {
-    console.log("🔄 Fetching API URL from JSON...");
-    const response = await axios.get(
-      "https://raw.githubusercontent.com/MR-MAHABUB-004/MAHABUB-BOT-STORAGE/refs/heads/main/APIURL.json"
-    );
-    if (response.data && response.data.YouTube) {
-      return response.data.YouTube;
-    } else {
-      throw new Error("YouTube field not found in the JSON.");
-    }
+    const res = await axios.get(`https://raw.githubusercontent.com/MOHAMMAD-NAYAN-07/Nayan/main/api.json`);
+    const api = res.data.down_stream
+    const data = await axios.get(api+"/nayan/yt?url="+link);
+    console.log(data.data)
+    const audioUrl = data.data.data.audio_down;
+
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        url: audioUrl,
+        responseType: 'stream'
+      }).then(response => {
+        const writeStream = fs.createWriteStream(path);
+
+        response.data.pipe(writeStream)
+          .on('finish', async () => {
+            try {
+              const info = await axios.get(api+"/nayan/yt?url="+link);
+              const result = {
+                title: info.data.data.title,
+                timestart: timestart
+              };
+              resolve(result);
+            } catch (error) {
+              reject(error);
+            }
+          })
+          .on('error', (error) => {
+            reject(error);
+          });
+      }).catch(error => {
+        reject(error);
+      });
+    });
   } catch (error) {
-    throw new Error("Failed to load API URL.");
+    return Promise.reject(error);
   }
 }
 
-module.exports = {
-  config: {
-    name: "song",
-    aliases: ["music"],
-    version: "1.0",
-    author: "‎MR᭄﹅ MAHABUB﹅ メꪜ",
-    countDown: 5,
-    role: 0,
-    shortDescription: "mp3 song from YouTube",
-    longDescription: "download mp3 song from YouTube using api",
-    category: "user",
-    guide: "{p}{n}song",
-  },
 
-  onStart: async function ({ api, event, args }) {
-    if (args.length === 0) {
-      return api.sendMessage(
-        "⚠️ 𝗣𝗹𝗲𝗮𝘀𝗲 𝗽𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘀𝗼𝗻𝗴 𝗻𝗮𝗺𝗲 𝘁𝗼 𝘀𝗲𝗮𝗿𝗰𝗵.𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯 ",
-        event.threadID
-      );
-    }
-
-    const songName = args.join(" ");
-
-    try {
-      const searchResults = await ytSearch(songName);
-      if (!searchResults || !searchResults.videos.length) {
-        throw new Error("𝗡𝗼 𝗿𝗲𝘀𝘂𝗹𝘁𝘀 𝗳𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝘆𝗼𝘂𝗿 𝘀𝗲𝗮𝗿𝗰𝗵 𝗾𝘂𝗲𝗿𝘆.𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯");
-      }
-
-      const topResult = searchResults.videos[0];
-      const videoUrl = `https://www.youtube.com/watch?v=${topResult.videoId}`;
-
-      const downloadDir = path.join(__dirname, "cache");
-      if (!fs.existsSync(downloadDir)) {
-        fs.mkdirSync(downloadDir, { recursive: true });
-      }
-
-      const safeTitle = topResult.title.replace(/[^a-zA-Z0-9]/g, "_");
-      const downloadPath = path.join(downloadDir, `${safeTitle}.mp3`);
-
-      const apiUrl = await getAPIUrl();
-      const downloadApiUrl = `${apiUrl}/ytmp3?url=${encodeURIComponent(videoUrl)}`;
-
-      const downloadResponse = await axios.get(downloadApiUrl);
-      const downloadUrl = downloadResponse?.data?.download?.url;
-
-      if (!downloadUrl) {
-        throw new Error("𝗔𝗣𝗜 𝗱𝗶𝗱 𝗻𝗼𝘁 𝗿𝗲𝘁𝘂𝗿𝗻 𝗮 𝘃𝗮𝗹𝗶𝗱 𝗱𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗨𝗥𝗟.𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯");
-      }
-
-      const file = fs.createWriteStream(downloadPath);
-
-      await new Promise((resolve, reject) => {
-        https
-          .get(downloadUrl.replace("http:", "https:"), (response) => {
-            if (response.statusCode === 200) {
-              response.pipe(file);
-              file.on("finish", () => {
-                file.close(resolve);
-              });
-            } else {
-              reject(
-                new Error(
-                  `𝗙𝗮𝗶𝗹𝗲𝗱 𝘁𝗼 𝗱𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗳𝗶𝗹𝗲. 𝗦𝘁𝗮𝘁𝘂𝘀 𝗰𝗼𝗱𝗲: ${response.statusCode}`
-                )
-              );
-            }
-          })
-          .on("error", reject);
-      });
-
-      api.setMessageReaction("✅", event.messageID, () => {}, true);
-
-      await api.sendMessage(
-        {
-          attachment: fs.createReadStream(downloadPath),
-          body: `𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯🎶 𝗧𝗶𝘁𝗹𝗲: ${topResult.title}`,
-        },
-        event.threadID,
-        event.messageID
-      );
-
-      deleteAfterTimeout(downloadPath, 15000);
-    } catch (error) {
-      console.error(`❌ 𝗘𝗿𝗿𝗼𝗿: ${error.message}`);
-      api.sendMessage(
-        `❌ 𝗙𝗮𝗶𝗹𝗲𝗱: ${error.message}`,
-        event.threadID,
-        event.messageID
-      );
-    }
-  },
+module.exports.config = {
+  name: "song", 
+  version: "1.0.0", 
+  permission: 0,
+  credits: "Nayan",
+  description: "example",
+  prefix: true,
+  category: "Media", 
+  usages: "user", 
+  cooldowns: 5
 };
+
+module.exports.handleReply = async function ({ api, event, handleReply }) {
+    const axios = require('axios')
+    const { createReadStream, unlinkSync, statSync } = require("fs-extra")
+    try {
+        var path = `${__dirname}/cache/1.mp3`
+        var data = await downloadMusicFromYoutube('https://www.youtube.com/watch?v=' + handleReply.link[event.body -1], path);
+        if (fs.statSync(path).size > 26214400) return api.sendMessage('The file cannot be sent because the capacity is greater than 25MB.', event.threadID, () => fs.unlinkSync(path), event.messageID);
+        api.unsendMessage(handleReply.messageID)
+        return api.sendMessage({ 
+		body: `🎵 Title: ${data.title}\n⏱️Processing time: ${Math.floor((Date.now()- data.timestart)/1000)} second\n💿====DISME PROJECT====💿`,
+            attachment: fs.createReadStream(path)}, event.threadID, ()=> fs.unlinkSync(path), 
+         event.messageID)
+            
+    }
+    catch (e) { return console.log(e) }
+}
+module.exports.convertHMS = function(value) {
+    const sec = parseInt(value, 10); 
+    let hours   = Math.floor(sec / 3600);
+    let minutes = Math.floor((sec - (hours * 3600)) / 60); 
+    let seconds = sec - (hours * 3600) - (minutes * 60); 
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return (hours != '00' ? hours +':': '') + minutes+':'+seconds;
+}
+module.exports.run = async function ({ api, event, args }) {
+    if (args.length == 0 || !args) return api.sendMessage('» উফফ আবাল কি গান শুনতে চাস তার ২/১ লাইন তো লেখবি নাকি 🥵 empty!', event.threadID, event.messageID);
+    const keywordSearch = args.join(" ");
+    var path = `${__dirname}/cache/1.mp3`
+    if (fs.existsSync(path)) { 
+        fs.unlinkSync(path)
+    }
+    if (args.join(" ").indexOf("https://") == 0) {
+        try {
+            var data = await downloadMusicFromYoutube(args.join(" "), path);
+            if (fs.statSync(path).size > 26214400) return api.sendMessage('Unable to send files because the capacity is greater than 25MB .', event.threadID, () => fs.unlinkSync(path), event.messageID);
+            return api.sendMessage({ 
+                body: `🎵 Title: ${data.title}\n⏱️ Processing time: ${Math.floor((Date.now()- data.timestart)/1000)} second\n💿====DISME PROJECT====💿`,
+                attachment: fs.createReadStream(path)}, event.threadID, ()=> fs.unlinkSync(path), 
+            event.messageID)
+            
+        }
+        catch (e) { return console.log(e) }
+    } else {
+          try {
+            var link = [],
+                msg = "",
+                num = 0
+            const Youtube = require('youtube-search-api');
+            var data = (await Youtube.GetListByKeyword(keywordSearch, false,6)).items;
+            for (let value of data) {
+              link.push(value.id);
+              num = num+=1
+              msg += (`${num} - ${value.title} (${value.length.simpleText})\n\n`);
+            }
+            var body = `»🔎 There's ${link.length} the result coincides with your search keyword:\n\n${msg}» Reply(feedback) select one of the searches above `
+            return api.sendMessage({
+              body: body
+            }, event.threadID, (error, info) => global.client.handleReply.push({
+              type: 'reply',
+              name: this.config.name,
+              messageID: info.messageID,
+              author: event.senderID,
+              link
+            }), event.messageID);
+          } catch(e) {
+            return api.sendMessage('An error has occurred, please try again in a moment!!\n' + e, event.threadID, event.messageID);
+        }
+    }
+                                                                                                                                                                                                       }
