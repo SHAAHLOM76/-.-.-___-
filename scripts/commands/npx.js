@@ -18,7 +18,7 @@ handleEvent: function({ api, event, client, __GLOBAL }) {
   const body = content.toLowerCase();
 	if (body.indexOf(" ")==0 || body.indexOf(" ")==0 || body.indexOf(" ")==0 || body.indexOf("😒")==0) {
 		var msg = {
-				body: "এঁভাঁবেঁ তাঁকাঁসঁ নাঁ প্রেঁমেঁ পঁরেঁ যাঁবোঁ 😚🥀𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯",
+				body: "কি্ঁরে্ঁ এ্ঁভা্ঁবেৃঁ তা্ঁকা্ঁস্ঁ কে্ঁন 😚🥀⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷",
 				attachment: fs.createReadStream(__dirname + `/Nayan/Mayabi.mp3`)
 			}
 			api.sendMessage( msg, threadID, messageID);
