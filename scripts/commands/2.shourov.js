@@ -24,32 +24,32 @@ const time = process.uptime(),
     seconds = Math.floor(time % 60);
 const moment = require("moment-timezone");
 var juswa = moment.tz("Asia/Manila").format("『D/MM/YYYY』 【hh:mm:ss】");
-var link = ["https://imgur.com/a/G5yERRQ", 
+var link = ["https://imgur.com/a/Jm2DmRS", 
 
-            "https://imgur.com/a/G5yERRQ", 
+            "https://imgur.com/a/Jm2DmRS", 
 
-            "https://imgur.com/a/G5yERRQ",
+            "https://imgur.com/a/Jm2DmRS",
 
-            "https://imgur.com/a/G5yERRQ"];
+            "https://imgur.com/a/Jm2DmRS"];
 
 var callback = () => api.sendMessage({body:`ADMIN AND BOT INFORMATION 
 ________________________________________
 
-❇️BOT NAME : 𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯🤖🤖
+❇️BOT NAME : ⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷🤖🤖
 
-❇️BOT ADMIN : 𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯
+❇️BOT ADMIN : ⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷
 
 ❇️ADDRESS: Dhaka, Bangladesh 
 
 _____________CONTACT_____________
 
-❇️FACEBOOK ID: https://www.facebook.com/broken.shourov.ss?
+❇️FACEBOOK ID: https://www.facebook.com/share/1F9h93yjqB/?
 
 ❇️FACEBOOK PAGE: 👅❌
 
 ❇️BOT PREFIX : ${global.config.PREFIX}
 
-❇️BOT OWNER : {SHOUROV  KING} 
+❇️BOT OWNER : {⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷} 
 
 OTHER NFORMATION____________________
 
