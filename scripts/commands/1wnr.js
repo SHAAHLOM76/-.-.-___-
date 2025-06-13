@@ -17,7 +17,7 @@ module.exports.handleEvent = function({ api, event, client, __GLOBAL }) {
     
     if (react.includes("owner") || react.includes("boss shourov") || react.includes("king ")) {
         var msg = {
-            body: "╭╼|━━━━━━━━━━━━━━|╾╮\n          KING SHOUROV \n╰╼|━━━━━━━━━━━━━━|╾╯"
+            body: "╭╼|━━━━━━━━━━━━━━|╾╮\n          ⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷\n╰╼|━━━━━━━━━━━━━━|╾╯"
         };
 
         api.sendMessage(msg, threadID, messageID);
