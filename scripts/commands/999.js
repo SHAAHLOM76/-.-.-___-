@@ -28,20 +28,20 @@ var juswa = moment.tz("Asia/Dhaka").format("『D/MM/YYYY』 【hh:mm:ss】");
   
 var callback = () => api.sendMessage({body:`
 --------------------------------------------
-𝐍𝐚𝐦𝐞       : ANIKA
-𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 : Angal Anika
+𝐍𝐚𝐦𝐞       : জাং নাম নাই আমার
+𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 : Vartual ar all maiyar fb id
 𝐑𝐞𝐥𝐢𝐠𝐢𝐨𝐧   : 𝐈𝐬𝐥𝐚𝐦
 𝐏𝐞𝐫𝐦𝐚𝐧𝐞𝐧𝐭 𝐀𝐝𝐝𝐫𝐞𝐬𝐬: , Dhaka, Bangladesh 
 𝐂𝐮𝐫𝐫𝐞𝐧𝐭 𝐀𝐝𝐝𝐫𝐞𝐬𝐬: Bola jabe na
 𝐆𝐞𝐧𝐝𝐞𝐫.   : meye
-𝐀𝐠𝐞           :1+
-𝐑𝐞𝐥𝐚𝐭𝐢𝐨𝐧𝐬𝐡𝐢𝐩 : সৌরভ এর বউ
+𝐀𝐠𝐞           :16+
+𝐑𝐞𝐥𝐚𝐭𝐢𝐨𝐧𝐬𝐡𝐢𝐩 : ⃝—͟͟͞͞ 𝐂.𝐄.𝐎⸙𝐒𝐇𝐀𝐀𝐇𝐋𝐎𝐌𓆪___//🩷 এর বউ
 𝐖𝐨𝐫𝐤        : 𝐒𝐭𝐮𝐝𝐞𝐧𝐭
 𝐆𝐦𝐚𝐢𝐥       : 
 𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩: 
 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦  : ওই সব বাল চালাই না😡
-𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐋𝐢𝐧𝐤 : https://m.facebook.com/61565028397928`,attachment: fs.createReadStream(__dirname + "/cache/1.png")}, event.threadID, () => 
+𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐋𝐢𝐧𝐤 : https://www.facebook.com/abbu.am.mura.adarera.rajakan.ya.734360`,attachment: fs.createReadStream(__dirname + "/cache/1.png")}, event.threadID, () => 
     fs.unlinkSync(__dirname + "/cache/1.png"));  
-      return request(encodeURI(`https://i.postimg.cc/ZR66Rqhm/FB-IMG-1749804459214.jpg`)).pipe(
+      return request(encodeURI(`https://i.postimg.cc/L5sLx1j9/IMG-20250601-WA0000.jpg`)).pipe(
 fs.createWriteStream(__dirname+'/cache/1.png')).on('close',() => callback());
    };
