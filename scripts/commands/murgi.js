@@ -12,7 +12,7 @@ module.exports.config = {
 
 module.exports.run = async function({ api, args, Users, event}) {
     var mention = Object.keys(event.mentions)[0];
-    if(!mention) return api.sendMessage("বস যে মেয়েকে পুটকি মারতে চান সে মেয়েকে @ম্যানশন দেউ", event.threadID);
+    if(!mention) return api.sendMessage("বস খান্কি মাগি কে একটা@ম্যানশন দেন", event.threadID);
  let name =  event.mentions[mention];
     var arraytag = [];
         arraytag.push({id: mention, tag: name});
